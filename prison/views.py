@@ -6,6 +6,9 @@ from . forms import PrisonerUpdateForm
 
 
 
+def dashboard(request):
+    pass
+
 
 # Prisoner list views
 def prisonerList(request):
@@ -29,8 +32,8 @@ def prisonerDetail(request, prisoner_id):
         'prisoner':prisoner
     })
 
-# Prisoner Update views
 
+# Prisoner Update views
 def prisonerUpdate(request, prisoner_id):
     prisoner = get_object_or_404(Prisoner, id=prisoner_id)
     form = PrisonerUpdateForm(instance=prisoner)
@@ -39,3 +42,17 @@ def prisonerUpdate(request, prisoner_id):
         if form.is_valid():
             form.save()
     return redirect('prisoner-list')
+
+
+
+# Prisoner Create Views
+def prisonerCreateView(request):
+    form = Prisoner(request.POST or None)
+    if request.method == "POST":
+        if form.is_valid():
+            form.save()
+            return redirect("dashboard")
+    
+    return render(request, 'prisoner', {
+        "form":form
+    })
