@@ -3,7 +3,8 @@ from django.http import Http404
 from .models import Prisoner, Onbail, Oncourt
 from django.shortcuts import get_object_or_404
 from . forms import PrisonerUpdateForm
-# from django.views.generic import CreateView, ListView, UpdateView, DeleteView, DetailView
+
+
 
 
 # Prisoner list views
