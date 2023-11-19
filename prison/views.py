@@ -23,12 +23,12 @@ def prisonerList(request):
 
 
 # Prisoner Detail Views
-def prisonerDetail(request, prisoner_id):
+def prisonerDetail(request, prisoner_slug):
     """
     Don't bother i just used this way `Http404`, insited of `get_object_or_404`
     """
     try:
-        prisoner = Prisoner.objects.get(pk=prisoner_id)
+        prisoner = Prisoner.objects.get(slug=prisoner_slug)
     except Prisoner.DoesNotExist:
         raise Http404("Prisoner doesn't exist")
     return render(request, "prisoner/detail.html", {
@@ -37,8 +37,8 @@ def prisonerDetail(request, prisoner_id):
 
 
 # Prisoner Update views
-def prisonerUpdate(request, prisoner_id):
-    prisoner = get_object_or_404(Prisoner, id=prisoner_id)
+def prisonerUpdate(request, prisoner_slug):
+    prisoner = get_object_or_404(Prisoner, slug=prisoner_slug)
     form = PrisonerUpdateForm(instance=prisoner)
     if request.method =='POST':
         form = PrisonerUpdateForm(request.POST, instance=prisoner)
