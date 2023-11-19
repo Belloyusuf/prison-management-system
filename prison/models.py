@@ -21,3 +21,16 @@ class Prisoner(TimeModel):
     nationality = models.CharField(default="Nigeria" ,max_length=50)
     tribe = models.CharField(max_length=50)
     img = models.ImageField(("Passport"), upload_to="prisoner/images", height_field=None, width_field=None, max_length=None)
+
+
+
+class Oncourt(TimeModel):
+    prisoner = models.ForeignKey(Prisoner, verbose_name=("Prisoner"), on_delete=models.CASCADE)
+    court_name = models.CharField(max_length=50)
+    date_of_attending = models.DateField(auto_now=False, auto_now_add=False)
+
+
+
+class Onbail(TimeModel):
+    prisoner = models.ForeignKey(Prisoner, verbose_name=_(""), on_delete=models.CASCADE)
+
