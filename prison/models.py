@@ -1,10 +1,7 @@
 from django.db import models
+from . timemodel import TimeModel
 
 
-
-class TimeModel():
-    created = models.DateTimeField(auto_now=False, auto_now_add=True)
-    updated = models.DateTimeField(auto_now=True, auto_now_add=False)
-
-    class Meta:
-        abstract = True
+class Prisoner(TimeModel):
+    f_name = models.CharField(("First Name"), max_length=15)
+    l_name = models.CharField(("Last Name"), max_length=15)
