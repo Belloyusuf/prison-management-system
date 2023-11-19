@@ -18,6 +18,7 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    # path('prisons/', include('prison.urls'))
+    path('prison/', include('prison.urls'), name="prison"),
+    path('', include('django.contrib.auth.urls')),
     path("__reload__/", include("django_browser_reload.urls")), # Tailwind 
 ]

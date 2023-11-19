@@ -6,7 +6,7 @@ class PrisonerUpdateForm(forms.ModelForm):
     
     class Meta:
         model = Prisoner
-        fields = ("__all__",)
+        fields = "__all__"
 
 
 
