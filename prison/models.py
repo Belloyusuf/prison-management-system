@@ -21,7 +21,7 @@ class Prisoner(TimeModel):
     nationality = models.CharField(default="Nigeria" ,max_length=50)
     tribe = models.CharField(max_length=50)
     img = models.ImageField(("Passport"), upload_to="prisoner/images", height_field=None, width_field=None, max_length=None)
-
+    slug = models.SlugField()
 
 
 class Oncourt(TimeModel):
