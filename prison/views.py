@@ -1,10 +1,12 @@
 from django.shortcuts import render, request
 from django.http import Http404
 from .models import Prisoner, Onbail, Oncourt
+from django.shortcuts import get_object_or_404
+from . forms import PrisonerUpdateForm
 # from django.views.generic import CreateView, ListView, UpdateView, DeleteView, DetailView
 
 
-
+# Prisoner list views
 def prisonerList(request):
     prisoner = Prisoner.objects.all()
     return render(request, "prisoner/list.html", {
@@ -13,7 +15,11 @@ def prisonerList(request):
 
 
 
+# Prisoner Detail Views
 def prisonerDetail(request, prisoner_id):
+    """
+    Don't bother i just used this way `Http404`, insited of `get_object_or_404`
+    """
     try:
         prisoner = Prisoner.objects.get(pk=prisoner_id)
     except Prisoner.DoesNotExist:
@@ -22,3 +28,12 @@ def prisonerDetail(request, prisoner_id):
         'prisoner':prisoner
     })
 
+# Prisoner Update views
+
+def prisonerUpdate(request, prisoner_id):
+    prisoner = get_object_or_404(Prisoner, id=prisoner_id)
+    form = PrisonerUpdateForm(instance=prisoner)
+    if request.method =='POST':
+        form = PrisonerUpdateForm(request.POST, instance=prisoner)
+        if form.is_valid():
+            form.save()
