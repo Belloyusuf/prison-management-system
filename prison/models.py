@@ -32,5 +32,6 @@ class Oncourt(TimeModel):
 
 
 class Onbail(TimeModel):
-    prisoner = models.ForeignKey(Prisoner, verbose_name=_(""), on_delete=models.CASCADE)
+    prisoner = models.ForeignKey(Prisoner, verbose_name=("Prisoner"), on_delete=models.CASCADE)
+    court = models.ForeignKey(Oncourt, verbose_name=("Court"), on_delete=models.CASCADE)
 
