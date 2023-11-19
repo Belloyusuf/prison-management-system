@@ -7,7 +7,10 @@ from . forms import PrisonerUpdateForm
 
 
 def dashboard(request):
-    pass
+    prisoner = Prisoner.objects.all()
+    return render(request, 'prisoner/dashboard.html', {
+        'prisoner':prisoner
+    })
 
 
 # Prisoner list views
