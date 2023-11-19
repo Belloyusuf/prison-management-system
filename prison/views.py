@@ -1,4 +1,4 @@
-from django.shortcuts import render, request
+from django.shortcuts import render, redirect
 from django.http import Http404
 from .models import Prisoner, Onbail, Oncourt
 from django.shortcuts import get_object_or_404
@@ -37,3 +37,4 @@ def prisonerUpdate(request, prisoner_id):
         form = PrisonerUpdateForm(request.POST, instance=prisoner)
         if form.is_valid():
             form.save()
+    return redirect('prisoner-list')
