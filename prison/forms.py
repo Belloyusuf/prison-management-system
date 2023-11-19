@@ -10,6 +10,13 @@ class PrisonerUpdateForm(forms.ModelForm):
 
 
 
+class PrisonerCreateForm(forms.ModelForm):
+    class Meta:
+        model = Prisoner
+        fields = "__all__"
+
+
+
 # class CRUDFORM(forms.ModelForm):
 #     name = forms.CharField(widget=forms.TextInput(attrs={
 #         "class": "form-control",
